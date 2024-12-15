@@ -10,5 +10,11 @@ const fetchUrls = cache(async () => {
 
 export async function GET() {
   const urls = await fetchUrls();
-  return NextResponse.json({ urls }, { status: 200 });
+  const response = NextResponse.json({ urls });
+  console.log("response:");
+  response.headers.set(
+    "Cache-Control",
+    "public, max-age=6, s-maxage=6, stale-while-revalidate=59"
+  );
+  return response;
 }

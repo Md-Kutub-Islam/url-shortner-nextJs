@@ -21,7 +21,7 @@ export default class Urlrepository {
   }
 
   async getAllUrls(): Promise<IUrl | null> {
-    return await this.urlModel.find().lean();
+    return await this.urlModel.find({}).lean();
   }
 
   async deleteUrl(id: string): Promise<IUrl | null> {
